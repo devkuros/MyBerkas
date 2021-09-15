@@ -17,16 +17,15 @@
         <div class="page-title">
             <h3>Categories</h3>
         </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+             <a class="btn btn-primary float-right my-3" href="javascript:void(0)" id="createNew"> Create Category</a>
+            </div>
+         </div>
     </div>
 
     <div class="row layout-top-spacing">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
-
-            <div class="row">
-               <div class="col-lg-12 col-md-12">
-                <a class="btn btn-primary float-right my-3" href="javascript:void(0)" id="createNew"> Create Category</a>
-               </div>
-            </div>
 
             {{-- Create Modal --}}
             <div class="modal fade" id="ajaxModal" tabindex="-1" aria-labelledby="ajaxModal" aria-hidden="true">
