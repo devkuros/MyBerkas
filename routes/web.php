@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Backend\{DashboardController,
+    KategoriController,
     LoginController};
+use App\Http\Controllers\Backend\Fakultas\FakultasController;
+use App\Http\Controllers\Backend\Fakultas\TeknikIndustriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +33,17 @@ Route::middleware('auth', 'prevent.history')->group(function(){
 
 Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-   });
+
+    Route::resource('category', KategoriController::class);
+
+    Route::prefix('fakultas')->middleware('permission:fakultas')->group(function(){
+        Route::get('', [FakultasController::class, 'index'])->name('fakultas.index');
+    });
+
+    Route::prefix('industri')->middleware('permission:industri')->group(function(){
+        Route::get('', [TeknikIndustriController::class, 'index'])->name('industri.index');
+    });
+});
 
 
 

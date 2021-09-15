@@ -7,14 +7,14 @@
     <meta content="myberkas" name="description" />
     <meta content="devkuros" name="author" />
     <title>@yield('admin-tittle')</title>
-    <link rel="icon" type="image/x-icon" href="{{('base/assets/img/favicon.ico')}}"/>
-    <link href="{{('base/assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
-    <script src="{{('base/assets/js/loader.js')}}"></script>
+    <link rel="icon" type="image/x-icon" href="{{asset('base/assets/img/favicon.ico')}}"/>
+    <link href="{{asset('base/assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
+    <script src="{{asset('base/assets/js/loader.js')}}"></script>
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
-    <link href="{{('base/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{('base/assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('base/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('base/assets/css/plugins.css')}}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -60,17 +60,17 @@
     <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="{{('base/assets/js/libs/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{('base/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{('base/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{('base/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{('base/assets/js/app.js')}}"></script>
+    <script src="{{asset('base/assets/js/libs/jquery-3.1.1.min.js')}}"></script>
+    <script src="{{asset('base/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{asset('base/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('base/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('base/assets/js/app.js')}}"></script>
     <script>
         $(document).ready(function() {
             App.init();
         });
     </script>
-    <script src="{{('base/assets/js/custom.js')}}"></script>
+    <script src="{{asset('base/assets/js/custom.js')}}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
