@@ -14,9 +14,6 @@
 @section('content')
 
     <div class="page-header">
-        <div class="page-title">
-            <h3>Teknik Industri</h3>
-        </div>
     </div>
 
     {{-- Delete Modal --}}
@@ -41,6 +38,12 @@
     </div>
 
     <div class="widget-content widget-content-area br-6">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>Arsip Teknik Industri</h4>
+            </div>
+        </div>
+        <hr>
         <table id="dtable" class="table dt-table-hover" style="width:100%">
             <thead>
                 <tr>

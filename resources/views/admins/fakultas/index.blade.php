@@ -14,9 +14,6 @@
 @section('content')
 
     <div class="page-header">
-        <div class="page-title">
-            <h3>Fakultas Teknologi Industri</h3>
-        </div>
     </div>
 
     {{-- Delete Modal --}}
@@ -41,6 +38,12 @@
     </div>
 
     <div class="widget-content widget-content-area br-6">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                <h4>Arsip Fakultas Teknologi Industri</h4>
+            </div>
+        </div>
+        <hr>
         <table id="dtable" class="table dt-table-hover" style="width:100%">
             <thead>
                 <tr>
@@ -66,6 +69,7 @@
 @endpush
 
 @push('js-in')
+
 <script>
 
     $(function () {
@@ -252,7 +256,6 @@
         })
     });
 </script>
-
 
 @endpush
 
