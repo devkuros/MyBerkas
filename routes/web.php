@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\{DashboardController,
     LoginController, SuratMasukController};
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
+use App\Http\Controllers\Backend\Permission\{PermissionController,
+    RoleController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +42,10 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::get('masuk', [SuratMasukController::class, 'index'])->name('masuks.index');
         Route::post('add', [SuratMasukController::class, 'store'])->name('masuks.store');
     });
+
+    Route::resource('roles', RoleController::class)->middleware('role:super admin');
+
+    Route::resource('permission', PermissionController::class)->middleware('role:super admin');
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');
 

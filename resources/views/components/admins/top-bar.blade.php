@@ -23,6 +23,25 @@
                 </a>
             </li>
 
+            <li class="menu single-menu {{ set_active('roles.index') }}{{ set_active('permission.index') }}">
+                <a href="#" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle autodroprown">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Role & Permission</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </a>
+                <ul class="collapse submenu list-unstyled" id="suratmasuk" data-parent="#topAccordion">
+                    <li class="{{ set_active('roles.index') }}">
+                        <a href="{{route('roles.index')}}"> Role </a>
+                    </li>
+                    <li class="{{ set_active('permission.index') }}">
+                        <a href="{{route('permission.index')}}"> Permission </a>
+                    </li>
+                </ul>
+            </li>
+
+
             <li class="menu single-menu {{ set_active('category.index') }}{{ set_active('masuks.index') }}">
                 <a href="#" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle autodroprown">
                     <div class="">
