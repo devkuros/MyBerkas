@@ -19,6 +19,27 @@
         </div>
     </div>
 
+    {{-- Delete Modal --}}
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">WARNING!!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><b>Are you sure want to delete?</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                    <button type="button" class="btn btn-danger" name="btnDelete" id="btnDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="widget-content widget-content-area br-6">
         <table id="dtable" class="table dt-table-hover" style="width:100%">
             <thead>

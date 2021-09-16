@@ -34,4 +34,11 @@ class TeknikIndustriController extends Controller
 
         return view('admins.industris.index');
     }
+
+    public function destroy($id){
+        $decrypt = Crypt::decryptString($id);
+        $data = SuratMasuk::findOrFail($decrypt)->delete();
+
+        return response()->json($data);
+    }
 }

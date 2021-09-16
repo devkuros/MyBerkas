@@ -41,13 +41,9 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::post('add', [SuratMasukController::class, 'store'])->name('masuks.store');
     });
 
-    Route::prefix('fakultas')->middleware('permission:fakultas')->group(function(){
-        Route::get('', [FakultasController::class, 'index'])->name('fakultas.index');
-    });
+    Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');
 
-    Route::prefix('industri')->middleware('permission:industri')->group(function(){
-        Route::get('', [TeknikIndustriController::class, 'index'])->name('industri.index');
-    });
+    Route::resource('industri', TeknikIndustriController::class)->middleware('permission:teknik industri');
 });
 
 

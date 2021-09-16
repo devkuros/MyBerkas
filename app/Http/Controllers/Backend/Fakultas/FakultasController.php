@@ -34,4 +34,11 @@ class FakultasController extends Controller
 
         return view('admins.fakultas.index', compact('surat'));
     }
+
+    public function destroy($id){
+        $decrypt = Crypt::decryptString($id);
+        $data = SuratMasuk::findOrFail($decrypt)->delete();
+
+        return response()->json($data);
+    }
 }
