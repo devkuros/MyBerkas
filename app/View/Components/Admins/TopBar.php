@@ -3,6 +3,7 @@
 namespace App\View\Components\Admins;
 
 use Illuminate\View\Component;
+use Spatie\Permission\Models\Role;
 
 class TopBar extends Component
 {
@@ -23,6 +24,7 @@ class TopBar extends Component
      */
     public function render()
     {
-        return view('components.admins.top-bar');
+        $roles = Role::get();
+        return view('components.admins.top-bar', compact('roles'));
     }
 }
