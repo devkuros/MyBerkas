@@ -5,7 +5,7 @@ use App\Http\Controllers\Backend\{DashboardController,
     LoginController, SuratMasukController};
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
-use App\Http\Controllers\Backend\Permission\{PermissionController,
+use App\Http\Controllers\Backend\Permission\{AssignController, PermissionController,
     RoleController};
 use Illuminate\Support\Facades\Route;
 
@@ -42,10 +42,16 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::get('masuk', [SuratMasukController::class, 'index'])->name('masuks.index');
         Route::post('add', [SuratMasukController::class, 'store'])->name('masuks.store');
     });
+    Route::prefix('role-and-permission')->group(function(){
+        Route::resource('roles', RoleController::class)->middleware('role:super admin');
 
-    Route::resource('roles', RoleController::class)->middleware('role:super admin');
+        Route::resource('permission', PermissionController::class)->middleware('role:super admin');
 
-    Route::resource('permission', PermissionController::class)->middleware('role:super admin');
+        Route::get('assignment', [AssignController::class, 'create'])->name('assignments.create');
+        Route::post('assignment', [AssignController::class, 'store']);
+        Route::get('assignment/{role}/edit', [AssignController::class, 'edit'])->name('assignments.sync');
+        Route::put('assignment/{role}/edit', [AssignController::class, 'update']);
+    });
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');
 
