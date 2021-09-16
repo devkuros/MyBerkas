@@ -19,6 +19,7 @@ class SuratMasuk extends Model
         'kategori_surat',
         'keterangan',
         'files',
+        'devisi',
         'tgl_surat',
     ];
 

@@ -12,7 +12,7 @@ class FakultasController extends Controller
 {
     public function index(SuratMasuk $surat){
         if (request()->ajax()) {
-            $surat = SuratMasuk::latest();
+            $surat = SuratMasuk::latest()->where('devisi', 'Fakultas Teknologi Industri');
 
                 return DataTables::of($surat)
                 ->addIndexColumn()

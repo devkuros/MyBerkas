@@ -68,6 +68,21 @@
                             </div>
 
                             <div class="form-group mb-4">
+                                <label for="devisi">Devisi</label>
+                                <select class="form-control cate @error('devisi') is-invalid @enderror" name="devisi">
+                                    <option selected disabled>Choose Devisi</option>
+                                    @foreach ($devisis as $dev)
+                                        <option value="{{ $dev->nama_devisi }}">{{ $dev->nama_devisi }}</option>
+                                    @endforeach
+                                </select>
+                                @error('devisi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group mb-4">
                                 <label for="tgl_surat">Tanggal Surat</label>
                                 <input id="when" class="form-control flatpickr flatpickr-input active @error('tgl_surat') is-invalid @enderror" type="text" name="tgl_surat" placeholder="Select Date..">
                                 @error('tgl_surat')
@@ -120,6 +135,11 @@
     });
 </script>
 
+<script>
+    var ss = $(".devi").select2({
+    tags: true,
+    });
+</script>
 
 <script>
     var f2 = flatpickr(document.getElementById('when'), {

@@ -29,6 +29,7 @@ class SuratMasukRequest extends FormRequest
             'kategori_surat' => ['required'],
             'keterangan' => ['nullable'],
             'files' => ['required', 'mimes:pdf', 'max:2048'],
+            'devisi' => ['required'],
             'tgl_surat' => ['required'],
         ];
     }

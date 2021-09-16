@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Category;
-use App\Models\SuratMasuk;
-use Illuminate\Http\Request;
+use App\Models\{Category,
+    Devisi,
+    SuratMasuk
+};
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\SuratMasukRequest;
 use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
 
 class SuratMasukController extends Controller
 {
     public function index(){
         $categoris = Category::all();
-        return view('admins.surats.masuks.index', compact('categoris'));
+        $devisis = Devisi::all();
+        return view('admins.surats.masuks.index', compact('categoris', 'devisis'));
     }
 
     public function store(SuratMasukRequest $request, SuratMasuk $surat){
@@ -35,6 +35,7 @@ class SuratMasukController extends Controller
         $surat->kategori_surat = $request->kategori_surat;
         $surat->keterangan = $request->keterangan;
         $surat->files = $surat['files'];
+        $surat->devisi = $request->devisi;
         $surat->tgl_surat = $request->tgl_surat;
         $surat->save();
 
