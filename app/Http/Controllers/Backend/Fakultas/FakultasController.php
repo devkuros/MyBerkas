@@ -22,10 +22,8 @@ class FakultasController extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     return '
-                        <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.Crypt::encryptString($data->id) .'"
-                            class="editData btn btn-sm btn-info" title="Edit"><i class="far fa-edit"></i></a>
                         <a href="javascript:void(0)" data-toggle="tooltip" id="'.Crypt::encryptString($data->id).'"
-                            class="btn btn-sm btn-danger deleteData" title="Delete"><i class="far fa-trash-alt"></i></a>
+                            class="btn btn-sm btn-danger deleteData" title="Delete">Delete</a>
                     ';
                 })
                 ->rawColumns(['action','files'])
