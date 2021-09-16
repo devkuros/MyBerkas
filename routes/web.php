@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\{DashboardController,
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
 use App\Http\Controllers\Backend\Permission\{AssignController, PermissionController,
-    RoleController};
+    RoleController, UserAssignController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,6 +51,11 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::post('assignment', [AssignController::class, 'store']);
         Route::get('assignment/{role}/edit', [AssignController::class, 'edit'])->name('assignments.sync');
         Route::put('assignment/{role}/edit', [AssignController::class, 'update']);
+
+        Route::get('assign/role', [UserAssignController::class, 'create'])->name('assign.create');
+        Route::post('assign/role', [UserAssignController::class, 'store']);
+        Route::get('assign/{user}/user', [UserAssignController::class, 'edit'])->name('assign.sync');
+        Route::put('assign/{user}/user', [UserAssignController::class, 'update']);
     });
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');

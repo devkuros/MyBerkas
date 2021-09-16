@@ -1,6 +1,6 @@
 @extends('layouts.admins.base')
 
-@section('admin-tittle')Sync Assignment @endsection
+@section('admin-tittle')Sync User Roles @endsection
 
 @push('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('base/assets/css/elements/alert.css') }}">
@@ -11,6 +11,7 @@
 @endpush
 
 @section('content')
+
 <div class="page-header">
     <div class="page-title">
     </div>
@@ -22,24 +23,19 @@
                 <div class="widget-header">
                     <div class="row">
                         <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                            <h4>Sync Assignments</h4>
+                            <h4>Sync User Roles</h4>
                         </div>
                     </div>
                 </div>
                 <div class="widget-content widget-content-area">
-                    <form method="POST" action="{{ route('assignments.sync', $role) }}">
+                    <form method="POST" action="{{ route('assign.sync', $user) }}">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group mb-4">
-                            <label for="role">Role</label>
-                            <select class="form-control cate @error('role') is-invalid @enderror" name="role">
-                                <option selected disabled>Choose Role</option>
-                                @foreach ($roles as $item)
-                                    <option {{ $role->id == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('role')
+                            <label for="user_email">Email</label>
+                                <input type="text" name="user_email" value="{{ $user->email }}" id="user_email" class="form-control" readonly>
+                            @error('user_email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -47,14 +43,14 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="permission">Permission</label>
-                            <select class="form-control tagging cate @error('permission') is-invalid @enderror" name="permission[]" multiple="multiple">
-                                <option selected disabled>Choose Permission</option>
-                                @foreach ($permissions as $permission)
-                                    <option {{ $role->permissions()->find($permission->id) ? "selected" : "" }} value="{{ $permission->id }}">{{ $permission->name }}</option>
+                            <label for="roles">Roles</label>
+                            <select class="form-control tagging cate @error('roles') is-invalid @enderror" name="roles[]" multiple="multiple">
+                                <option selected disabled>Choose Roles</option>
+                                @foreach ($roles as $role)
+                                    <option {{ $user->roles()->find($role->id) ? "selected" : "" }} value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
-                            @error('permission')
+                            @error('roles')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -68,6 +64,8 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 
 @push('js-ex')
