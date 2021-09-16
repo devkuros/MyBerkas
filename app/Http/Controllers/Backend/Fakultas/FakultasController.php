@@ -16,6 +16,10 @@ class FakultasController extends Controller
 
                 return DataTables::of($surat)
                 ->addIndexColumn()
+                ->editColumn('files', function($data) {
+                    return
+                    '<a href="'.asset('storage/suratmasuk').'/'.$data->files.'">Pdf</a>';
+                })
                 ->addColumn('action', function ($data) {
                     return '
                         <a href="javascript:void(0)" data-toggle="tooltip" data-id="'.Crypt::encryptString($data->id) .'"
@@ -24,7 +28,7 @@ class FakultasController extends Controller
                             class="btn btn-sm btn-danger deleteData" title="Delete"><i class="far fa-trash-alt"></i></a>
                     ';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','files'])
                 ->make();
         }
 
