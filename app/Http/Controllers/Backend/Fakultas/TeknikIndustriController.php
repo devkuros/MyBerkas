@@ -18,7 +18,7 @@ class TeknikIndustriController extends Controller
                 ->addIndexColumn()
                 ->editColumn('files', function($data) {
                     return
-                    '<a href="'.asset('storage/suratmasuk').'/'.$data->files.'">Pdf</a>';
+                    '<a href="'.asset('storage/suratmasuk').'/'.$data->files.'" class="badge badge-info">Pdf</a>';
                 })
                 ->addColumn('action', function ($data) {
                     return '

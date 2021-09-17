@@ -22,7 +22,7 @@ class SuratMasukController extends Controller
 
         if ($request->file('files')) {
             $img = $request->file('files');
-            $surat['files'] = time().'-'. $img->getClientOriginalName();
+            $surat['files'] = time().'.'. $img->extension();
 
             $filePath = public_path('/storage/suratmasuk');
             $img->move($filePath, $surat['files']);
@@ -48,7 +48,7 @@ class SuratMasukController extends Controller
         //     'tgl_surat' => $request->tgl_surat
         // ]);
 
-        Alert::toast('Input Surat Success', 'success')->position('top');
+        Alert::toast('Input Surat Masuk Success', 'success')->position('top');
         return back();
 
     }

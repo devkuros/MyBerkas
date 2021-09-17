@@ -136,12 +136,6 @@
 </script>
 
 <script>
-    var ss = $(".devi").select2({
-    tags: true,
-    });
-</script>
-
-<script>
     var f2 = flatpickr(document.getElementById('when'), {
     enableTime: true,
     dateFormat: "Y-m-d H:i",
