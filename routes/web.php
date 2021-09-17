@@ -2,11 +2,18 @@
 
 use App\Http\Controllers\Backend\{DashboardController,
     KategoriController,
-    LoginController, SuratMasukController};
+    LoginController,
+    SuratKeluarController,
+    SuratMasukController};
+
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
-use App\Http\Controllers\Backend\Permission\{AssignController, PermissionController,
-    RoleController, UserAssignController};
+
+use App\Http\Controllers\Backend\Permission\{AssignController,
+    PermissionController,
+    RoleController,
+    UserAssignController};
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +48,11 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
     Route::prefix('surat-masuk')->middleware('permission:create surat')->group(function(){
         Route::get('', [SuratMasukController::class, 'index'])->name('masuks.index');
         Route::post('add', [SuratMasukController::class, 'store'])->name('masuks.store');
+    });
+
+    Route::prefix('surat-keluar')->middleware('permission:create surat')->group(function(){
+        Route::get('', [SuratKeluarController::class, 'index'])->name('keluars.index');
+        Route::post('add', [SuratKeluarController::class, 'store'])->name('keluars.store');
     });
 
     Route::prefix('role-and-permission')->middleware('role:super admin')->group(function(){
