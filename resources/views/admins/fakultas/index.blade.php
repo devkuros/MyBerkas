@@ -110,7 +110,6 @@
                     {
                         data: 'files',
                         name: 'files',
-                        url: '{{ url('storage/suratmasuk/') }}'
                     },
                     {
                         data: 'keterangan',

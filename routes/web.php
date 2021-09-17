@@ -38,14 +38,15 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
 
     Route::resource('category', KategoriController::class);
 
-    Route::prefix('surat')->middleware('permission:create surat')->group(function(){
-        Route::get('masuk', [SuratMasukController::class, 'index'])->name('masuks.index');
+    Route::prefix('surat-masuk')->middleware('permission:create surat')->group(function(){
+        Route::get('', [SuratMasukController::class, 'index'])->name('masuks.index');
         Route::post('add', [SuratMasukController::class, 'store'])->name('masuks.store');
     });
-    Route::prefix('role-and-permission')->group(function(){
-        Route::resource('roles', RoleController::class)->middleware('role:super admin');
 
-        Route::resource('permission', PermissionController::class)->middleware('role:super admin');
+    Route::prefix('role-and-permission')->middleware('role:super admin')->group(function(){
+        Route::resource('roles', RoleController::class);
+
+        Route::resource('permission', PermissionController::class);
 
         Route::get('assignment', [AssignController::class, 'create'])->name('assignments.create');
         Route::post('assignment', [AssignController::class, 'store']);
