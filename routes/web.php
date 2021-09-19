@@ -8,24 +8,14 @@ use App\Http\Controllers\Backend\{DashboardController,
 
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
-
+use App\Http\Controllers\Backend\Layanan\{TemplateSuratController,
+    CetakSuratController, PengaturanSuratController};
 use App\Http\Controllers\Backend\Permission\{AssignController,
     PermissionController,
     RoleController,
     UserAssignController};
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,7 +31,7 @@ Route::middleware('auth', 'prevent.history')->group(function(){
 });
 
 Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(function(){
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('category', KategoriController::class);
 
@@ -69,6 +59,16 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::post('assign/role', [UserAssignController::class, 'store']);
         Route::get('assign/{user}/user', [UserAssignController::class, 'edit'])->name('assign.sync');
         Route::put('assign/{user}/user', [UserAssignController::class, 'update']);
+    });
+
+    Route::prefix('layanan-surat')->middleware('permission:layanan surat')->group(function(){
+        Route::get('template', [TemplateSuratController::class, 'index'])->name('template.index');
+        Route::post('template/add', [TemplateSuratController::class, 'store'])->name('template.store');
+        Route::get('pengaturan', [PengaturanSuratController::class, 'index'])->name('pengaturan.index');
+        Route::post('pengaturan/add', [PengaturanSuratController::class, 'store'])->name('pengaturan.store');
+        Route::delete('pengaturan/delete/{id}', [PengaturanSuratController::class, 'destroy'])->name('pengaturan.destroy');
+        Route::get('create', [CetakSuratController::class, 'index'])->name('cetak.index');
+        Route::get('form/{id}', [CetakSuratController::class, 'form']);
     });
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');

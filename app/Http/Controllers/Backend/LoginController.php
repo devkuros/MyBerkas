@@ -22,7 +22,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             Alert::toast('Login Success', 'success')->position('top');
-            return redirect()->intended('admin');
+            return redirect()->intended('admin/home');
         }
 
         Alert::toast('Please try again', 'error')->position('top');
