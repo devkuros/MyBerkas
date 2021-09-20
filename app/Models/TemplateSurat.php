@@ -13,10 +13,14 @@ class TemplateSurat extends Model
     protected $table = "template_surats";
 
     protected $fillable = [
-        'kode_template',
         'nama_surat',
         'slug_template',
+        'url_format',
         'file_template',
         'ket_template'
     ];
+
+    public function formatSurat(){
+        return $this->belongsTo(FormatSurat::class);
+    }
 }

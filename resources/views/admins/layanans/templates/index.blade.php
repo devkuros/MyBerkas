@@ -6,6 +6,8 @@
     <!--  BEGIN CUSTOM STYLE FILE  -->
     <link href="{{asset('base/assets/css/elements/miscellaneous.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('base/assets/css/elements/breadcrumb.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('base/plugins/select2/select2.min.css')}}">
+
     <!--  END CUSTOM STYLE FILE  -->
 @endpush
 @section('content')
@@ -51,9 +53,19 @@
                             @csrf
                             @method('POST')
                             <div class="form-group row mb-4">
-                                <label for="kode_template" class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Kode Surat</label>
+                                <label for="url_format" class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Jenis Surat</label>
                                 <div class="col-xl-10 col-lg-9 col-sm-10">
-                                    <input type="text" class="form-control @error('kode_template') is-invalid @enderror" name="kode_template" id="kode_template" placeholder="Input Kode Surat">
+                                    <select id="url_format" name="url_format" class="form-control format @error('url_format') is-invalid @enderror">
+                                        <option selected disabled>Pilih Jenis Surat</option>
+                                        @foreach ($format_surats as $fs)
+                                            <option value="{{$fs->url_format}}">({{$fs->kode_format}}) - {{$fs->nama_format}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('url_format')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
@@ -64,6 +76,11 @@
                                             <div class="input-group-text">Surat</div>
                                         </div>
                                         <input type="text" name="nama_surat" id="nama_surat" class="form-control @error('nama_surat') is-invalid @enderror">
+                                        @error('nama_surat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                     </div>
                                 </div>
                             </div>
@@ -73,16 +90,21 @@
                                     <input type="file" class="form-control @error('file_template') is-invalid @enderror" name="file_template" id="file_template" accept=".docx">
                                 </div>
                                     @error('file_template')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label" for="ket_template">Keterangan</label>
                                 <div class="col-xl-10 col-lg-9 col-sm-10">
                                     <textarea class="form-control @error('ket_template') is-invalid @enderror" id="ket_template" name="ket_template" rows="3"></textarea>
+                                    @error('ket_template')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -99,3 +121,15 @@
         </div>
 
 @endsection
+
+@push('js-ex')
+    <script src="{{asset('base/plugins/select2/select2.min.js')}}"></script>
+@endpush
+
+@push('js-in')
+    <script>
+        var ss = $(".format").select2({
+            tags: true,
+        })
+    </script>
+@endpush

@@ -37,8 +37,8 @@ class CetakSuratController extends Controller
         $forms = TemplateSurat::where('slug_template', $id)
                                 ->where('deleted_at', null)->first();
 
-        if(View::exists('admins.layanans.cetaks.'.$forms->slug_template.'')){
-            return view('admins.layanans.cetaks.'.$forms->slug_template.'', compact('forms'));
+        if(View::exists('admins.layanans.cetaks.'.$forms->url_format.'')){
+            return view('admins.layanans.cetaks.'.$forms->url_format.'', compact('forms'));
         } else {
             return abort('404');
         }

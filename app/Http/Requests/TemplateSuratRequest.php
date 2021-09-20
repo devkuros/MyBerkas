@@ -24,9 +24,9 @@ class TemplateSuratRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode_template' => ['required', 'string'],
             'nama_surat' => ['required', 'string'],
             'file_template' => ['required', 'mimes:docx', 'max:2048'],
+            'url_format' => ['required'],
             'ket_template' => ['nullable']
         ];
     }

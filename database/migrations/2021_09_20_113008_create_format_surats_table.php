@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTemplateSuratsTable extends Migration
+class CreateFormatSuratsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTemplateSuratsTable extends Migration
      */
     public function up()
     {
-        Schema::create('template_surats', function (Blueprint $table) {
+        Schema::create('format_surats', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_surat');
-            $table->string('slug_template');
+            $table->string('kode_format')->unique();
+            $table->string('nama_format');
             $table->string('url_format');
-            $table->string('file_template');
-            $table->string('ket_template')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateTemplateSuratsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('template_surats');
+        Schema::dropIfExists('format_surats');
     }
 }

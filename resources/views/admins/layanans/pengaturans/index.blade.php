@@ -78,7 +78,6 @@
                     <tr>
                         <th class="no-content dt-no-sorting">No</th>
                         <th>Nama Surat</th>
-                        <th>Kode Surat</th>
                         <th>Url</th>
                         <th>Keterangan</th>
                         <th class="no-content dt-no-sorting text-center">Actions</th>
@@ -127,11 +126,6 @@
                         name: 'nama_surat'
                     },
                     {
-                        data: 'kode_template',
-                        name: 'kode_template',
-                        className: 'text-center'
-                    },
-                    {
                         data: 'slug_template',
                         name: 'slug_template',
                     },
@@ -177,11 +171,10 @@
         $('body').on('click', '.editData', function () {
                 var id = $(this).data('id');
                 $.get(' pengaturan/' + id + '/edit', function (data) {
-                    $('#titleModal').html("Edit " + data.kode_template);
+                    $('#titleModal').html("Edit " + data.nama_surat);
                     $('#saveBtn').val("editDataa");
                     $('#ajaxModal').modal('show');
                     $('#id').val(data.id);
-                    $('#kode_template').val(data.kode_template);
                     $('#nama_surat').val(data.nama_surat);
                     $('#slug_template').val(data.slug_template);
                     $('#files').val(data.files);
@@ -215,7 +208,7 @@
                     });
                     toast({
                         type: 'success',
-                        title: data.kode_template + ' data is successfully saved',
+                        title: data.nama_surat + ' data is successfully saved',
                         padding: '2em',
                     })
                 },
