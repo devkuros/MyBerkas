@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backend\Layanan;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\TemplateSurat;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpWord\TemplateProcessor;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class CetakSuratController extends Controller
@@ -43,5 +45,20 @@ class CetakSuratController extends Controller
             return abort('404');
         }
 
+    }
+
+    public function exword(Request $request, $id){
+        $template = TemplateSurat::findOrFail($id);
+        // dd($template);
+        $templateProcessor = new TemplateProcessor('storage/templatesurat/'.$template->file_template);
+        $templateProcessor->setValue('nomor', 'FTI/Unsurya/'.$request->nomor_surat.'/'.getRomawi(now()->month).'/'.now()->year);
+        $templateProcessor->setValue('nama_mhs', $request->name);
+        $fileName = $request->name;
+        $filePath = 'storage/suratjadi/'.$fileName.'.docx';
+        $templateProcessor->saveAs($filePath);
+        // return response()->download($filePath)->deleteFileAfterSend('false');
+        // return Storage::download('public/'.$filePath);
+        Alert::toast('Download Success', 'success')->position('top');
+        return back();
     }
 }

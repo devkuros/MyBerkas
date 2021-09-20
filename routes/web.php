@@ -71,6 +71,7 @@ Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(functi
         Route::delete('pengaturan/delete/{id}', [PengaturanSuratController::class, 'destroy'])->name('pengaturan.destroy');
         Route::get('create', [CetakSuratController::class, 'index'])->name('cetak.index');
         Route::get('form/{id}', [CetakSuratController::class, 'form']);
+        Route::post('form/exportword/{id}', [CetakSuratController::class, 'exword'])->name('form.word');
     });
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');

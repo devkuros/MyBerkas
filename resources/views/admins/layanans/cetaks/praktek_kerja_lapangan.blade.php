@@ -42,7 +42,9 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 layout-spacing">
                 <div class="widget-content-area br-4">
                     <div class="widget-one">
-                        <form class="form-vertical" action="#">
+                        <form class="form-vertical" action="{{route('form.word', $forms->id)}}" method="POST">
+                            @csrf
+                            @method('POST')
 
                             {{-- <div class="form-group mb-4">
                                 <label class="control-label">Nama Surat</label>
@@ -61,8 +63,13 @@
                             <div class="form-group mb-4">
                                 <p><em>Format Nomor Surat : </em><span class="badge badge-info">FTI/Unsurya/<span id="result"></span>/{{getRomawi(now()->month)}}/{{ now()->year }}</span></p>
 
-                                <label class="control-label">Nomor Surat</label>
-                                <input type="number" name="nomor_surat" id="input" class="form-control" autofocus placeholder="01">
+                                <label class="control-label" for="nomor_surat">Nomor Surat</label>
+                                <input type="number" name="nomor_surat" id="input" class="form-control @error('tgl_surat') is-invalid @enderror" autofocus placeholder="01">
+                                @error('nomor_surat')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
 
                             <div class="form-group mb-4">
@@ -81,18 +88,33 @@
 
                             <div class="form-row mb-4">
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Yth :</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label class="control-label" for="yth">Yth :</label>
+                                    <input type="text" name="yth" id="yth" class="form-control @error('yth') is-invalid @enderror">
+                                    @error('yth')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Perusahaan</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label class="control-label" for="perusahaan">Perusahaan</label>
+                                    <input type="text" name="perusahaan" id="perusahaan" class="form-control @error('perusahaan') is-invalid @enderror">
+                                    @error('perusahaan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
-                                <label class="control-label">Tempat</label>
-                                <input type="text" name="name" class="form-control">
+                                <label class="control-label" for="tempat">Tempat</label>
+                                <input type="text" name="tempat" id="tempat" class="form-control @error('tempat') is-invalid @enderror">
+                                @error('tempat')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="alert alert-primary mb-4" role="alert">
@@ -101,23 +123,43 @@
 
                             <div class="form-row mb-4">
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Nama</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label class="control-label" for="name">Nama</label>
+                                    <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label class="control-label">Nim</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label class="control-label" for="nim">Nim</label>
+                                    <input type="text" name="nim" id="nim" class="form-control @error('nim') is-invalid @enderror">
+                                    @error('nim')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-group mb-4">
-                                <label class="control-label">Fakultas</label>
-                                <input type="text" name="name" class="form-control">
+                                <label class="control-label" for="fakultas">Fakultas</label>
+                                <input type="text" name="fakultas" id="fakultas" class="form-control @error('fakultas') is-invalid @enderror" >
+                                @error('fakultas')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="form-group mb-4">
-                                <label class="control-label">Program Studi</label>
-                                <input type="text" name="name" class="form-control">
+                                <label class="control-label" for="prodi">Program Studi</label>
+                                <input type="text" name="prodi" id="prodi" class="form-control @error('prodi') is-invalid @enderror">
+                                @error('prodi')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
                             </div>
 
                             <div class="alert alert-primary mb-4" role="alert">
@@ -125,22 +167,32 @@
                             </div>
 
                             <div class="form-group mb-4">
-                                <label class="control-label">Tertanda Atas Nama</label>
-                                <select name="" id="" class="form-control">
+                                <label class="control-label" for="ttd">Tertanda Atas Nama</label>
+                                <select name="ttd" id="ttd" class="form-control @error('ttd') is-invalid @enderror">
                                     <option selected>Choose me...</option>
                                     <option>. . .</option>
+                                    @error('ttd')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </select>
                             </div>
 
                             <div class="form-group mb-4">
-                                <label class="control-label">Menjabat sebagai</label>
-                                <select name="" id="" class="form-control">
+                                <label class="control-label" for="jabatan">Menjabat sebagai</label>
+                                <select name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
                                     <option selected>Choose me...</option>
                                     <option>. . .</option>
+                                    @error('jabatan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </select>
                             </div>
 
-                            <button class="btn btn-primary mb-2 mr-2">
+                            <button class="btn btn-primary mb-2 mr-2" type="submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                                  Export Word
                             </button>
@@ -158,7 +210,12 @@
 @push('js-in')
 
 <script>
-    var f1 = flatpickr(document.getElementById('when'));
+    var f2 = flatpickr(document.getElementById('when'), {
+    enableTime: false,
+    altInput: true,
+    altFormat: "d F Y",
+    dateFormat: "Y-m-d",
+});
 </script>
 
 <script>
