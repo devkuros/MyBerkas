@@ -15,10 +15,9 @@ class CreateTemplateSuratsTable extends Migration
     {
         Schema::create('template_surats', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('format_surat_id')->constrained();
             $table->string('nama_surat');
             $table->string('slug_template');
-            $table->string('url_format');
-            $table->string('file_template');
             $table->string('ket_template')->nullable();
             $table->softDeletes();
             $table->timestamps();

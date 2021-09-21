@@ -38,8 +38,8 @@ class CetakSuratController extends Controller
 
         $ceknomor = DB::table('detail_surats')->latest()->first();
 
-        if(View::exists('admins.layanans.cetaks.'.$forms->url_format.'')){
-            return view('admins.layanans.cetaks.'.$forms->url_format.'', compact('forms', 'ceknomor'));
+        if(View::exists('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'')){
+            return view('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'', compact('forms', 'ceknomor'));
         } else {
             return abort('404');
         }
@@ -49,6 +49,7 @@ class CetakSuratController extends Controller
     public function exword(Request $request, DetailSurat $ds, $id){
         Carbon::setLocale('id');
 
+        $ds->nama_detail_surat = $request->nama_surat;
         $ds->nomer = $request->nomor_surat;
         $ds->nomor_surat = 'FTI/Unsurya/'.$request->nomor_surat.'/'.getRomawi(now()->month).'/'.now()->year;
         $ds->tgl_surat = $request->tgl_surat;
@@ -58,7 +59,7 @@ class CetakSuratController extends Controller
 
         $tgl = Carbon::createFromFormat('Y-m-d', $request->tgl_surat)->isoformat('DD MMMM Y');
 
-        $templateProcessor = new TemplateProcessor('storage/templatesurat/'.$template->file_template);
+        $templateProcessor = new TemplateProcessor('storage/templatesurat/'.$template->formatSurat->file_format);
         $templateProcessor->setValue('nomor', 'FTI/Unsurya/'.$request->nomor_surat.'/'.getRomawi(now()->month).'/'.now()->year);
         $templateProcessor->setValue('tanggal_surat', $tgl);
         $templateProcessor->setValue('yth', $request->yth);

@@ -58,7 +58,8 @@
                                     <select id="url_format" name="url_format" class="form-control format @error('url_format') is-invalid @enderror">
                                         <option selected disabled>Pilih Jenis Surat</option>
                                         @foreach ($format_surats as $fs)
-                                            <option value="{{$fs->url_format}}">({{$fs->kode_format}}) - {{$fs->nama_format}}</option>
+                                            <option id="file-{{$fs->id}}" data-files="{{$fs->file_format}}"
+                                                value="{{$fs->id}}">({{$fs->kode_format}}) - {{$fs->nama_format}}</option>
                                         @endforeach
                                     </select>
                                     @error('url_format')
@@ -84,7 +85,22 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group row mb-4">
+                                <label for="file_format" class="col-xl-2 col-sm-3 col-sm-2 col-form-label">Nama File</label>
+                                <div class="col-xl-10 col-lg-9 col-sm-10">
+                                    <div class="input-group">
+                                        <input type="text" readonly name="file_format" id="ambil_files" class="form-control @error('file_format') is-invalid @enderror">
+                                        @error('file_format')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="form-group row mb-4">
                                 <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label" for="file_template">Upload Template Surat</label>
                                 <div class="col-xl-10 col-lg-9 col-sm-10">
                                     <input type="file" class="form-control @error('file_template') is-invalid @enderror" name="file_template" id="file_template" accept=".docx">
@@ -94,7 +110,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="form-group row mb-4">
                                 <label class="col-xl-2 col-sm-3 col-sm-2 col-form-label" for="ket_template">Keterangan</label>
@@ -131,5 +147,14 @@
         var ss = $(".format").select2({
             tags: true,
         })
+    </script>
+
+    <script type="text/javascript">
+        window.onload = function(){
+        $("#url_format").change(function () {
+            var ambilFile = $("#file-"+this.value).data('files');
+            $("#ambil_files").val(ambilFile);
+        });
+    }
     </script>
 @endpush

@@ -17,6 +17,7 @@ class CreateDetailSuratsTable extends Migration
             $table->id();
             $table->string('nomer');
             $table->string('nomor_surat');
+            $table->string('nama_detail_surat');
             $table->date('tgl_surat');
             $table->timestamps();
         });

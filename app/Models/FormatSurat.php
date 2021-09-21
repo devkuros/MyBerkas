@@ -13,6 +13,6 @@ class FormatSurat extends Model
     protected $guarded = [];
 
     public function templateSurat(){
-        return $this->hasMany(TemplateSurat::class, 'format_surats_id');
+        return $this->hasMany(TemplateSurat::class, 'format_surat_id');
     }
 }

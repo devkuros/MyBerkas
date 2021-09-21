@@ -25,9 +25,10 @@ class TemplateSuratRequest extends FormRequest
     {
         return [
             'nama_surat' => ['required', 'string'],
-            'file_template' => ['required', 'mimes:docx', 'max:2048'],
+            // 'file_template' => ['required', 'mimes:docx', 'max:2048'],
             'url_format' => ['required'],
-            'ket_template' => ['nullable']
+            'ket_template' => ['nullable'],
+            'file_format' => ['required']
         ];
     }
 }

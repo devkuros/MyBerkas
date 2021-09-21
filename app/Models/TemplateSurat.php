@@ -16,7 +16,6 @@ class TemplateSurat extends Model
         'nama_surat',
         'slug_template',
         'url_format',
-        'file_template',
         'ket_template'
     ];
 

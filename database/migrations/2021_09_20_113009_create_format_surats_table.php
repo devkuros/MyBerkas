@@ -17,6 +17,7 @@ class CreateFormatSuratsTable extends Migration
             $table->id();
             $table->string('kode_format')->unique();
             $table->string('nama_format');
+            $table->string('file_format');
             $table->string('url_format');
             $table->softDeletes();
             $table->timestamps();
