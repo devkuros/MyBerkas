@@ -32,8 +32,8 @@ Route::middleware('auth', 'prevent.history')->group(function(){
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware('have.role', 'prevent.history')->prefix('admin')->group(function(){
-    Route::get('home', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware('have.role')->prefix('admin')->group(function(){
+    Route::get('home', [DashboardController::class, 'index'])->name('dashboard')->middleware('prevent.history');
 
     Route::resource('category', KategoriController::class);
 
