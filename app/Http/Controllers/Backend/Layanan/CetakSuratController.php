@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Backend\Layanan;
 
 use Carbon\Carbon;
+use App\Models\{TemplateSurat, DetailSurat};
 use Illuminate\Http\Request;
-use App\Models\TemplateSurat;
-use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\{View, URL, DB};
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -37,16 +36,24 @@ class CetakSuratController extends Controller
         $forms = TemplateSurat::where('slug_template', $id)
                                 ->where('deleted_at', null)->first();
 
+        $ceknomor = DB::table('detail_surats')->latest()->first();
+
         if(View::exists('admins.layanans.cetaks.'.$forms->url_format.'')){
-            return view('admins.layanans.cetaks.'.$forms->url_format.'', compact('forms'));
+            return view('admins.layanans.cetaks.'.$forms->url_format.'', compact('forms', 'ceknomor'));
         } else {
             return abort('404');
         }
 
     }
 
-    public function exword(Request $request, $id){
+    public function exword(Request $request, DetailSurat $ds, $id){
         Carbon::setLocale('id');
+
+        $ds->nomer = $request->nomor_surat;
+        $ds->nomor_surat = 'FTI/Unsurya/'.$request->nomor_surat.'/'.getRomawi(now()->month).'/'.now()->year;
+        $ds->tgl_surat = $request->tgl_surat;
+        $ds->save();
+
         $template = TemplateSurat::findOrFail($id);
 
         $tgl = Carbon::createFromFormat('Y-m-d', $request->tgl_surat)->isoformat('DD MMMM Y');

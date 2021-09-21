@@ -64,12 +64,13 @@
                                 <p><em>Format Nomor Surat : </em><span class="badge badge-info">FTI/Unsurya/<span id="result"></span>/{{getRomawi(now()->month)}}/{{ now()->year }}</span></p>
 
                                 <label class="control-label" for="nomor_surat">Nomor Surat</label>
-                                <input type="number" name="nomor_surat" id="input" class="form-control @error('tgl_surat') is-invalid @enderror" autofocus placeholder="01">
+                                <input type="number" name="nomor_surat" id="input" class="form-control @error('tgl_surat') is-invalid @enderror" autofocus placeholder="{{$ceknomor->nomer + 1}}">
                                 @error('nomor_surat')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                                <small id="nomerAkhir" class="form-text text-danger mb-4"><em>Nomor Terakhir : </em>{{$ceknomor->nomor_surat}} ({{$ceknomor->created_at}})</small>
                             </div>
 
                             <div class="form-group mb-4">
