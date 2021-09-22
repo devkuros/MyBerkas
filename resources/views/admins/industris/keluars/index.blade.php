@@ -226,7 +226,7 @@
 
         $('#btnDelete').click(function () {
                 $.ajax({
-                    url: "industri/surat-keluar/delete/" + data,
+                    url: "surat-keluar/delete/" + data,
                     type: 'delete',
                     beforeSend: function () {
                         $('#btnDelete').text('Delete');

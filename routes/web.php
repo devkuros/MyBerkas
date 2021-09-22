@@ -79,21 +79,15 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
     Route::prefix('fakultas')->middleware('permission:fti')->group(function(){
         Route::get('', [FakultasController::class, 'index'])->name('fakultas.index');
         Route::delete('delete/{id}', [FakultasController::class, 'destroy']);
+        Route::get('surat-keluar', [FakultasController::class, 'keluar'])->name('fakultas.keluar');
+        Route::delete('surat-keluar/delete/{id}', [FakultasController::class, 'hapusKeluar']);
     });
 
     Route::prefix('industri')->middleware('permission:teknik industri')->group(function(){
         Route::get('', [TeknikIndustriController::class, 'index'])->name('industri.index');
         Route::delete('delete/{id}', [TeknikIndustriController::class, 'destroy']);
-    });
-
-    Route::prefix('fakultas/surat-keluar')->middleware('permission:fti')->group(function(){
-        Route::get('', [FakultasController::class, 'keluar'])->name('fakultas.keluar');
-        Route::delete('delete/{id}', [FakultasController::class, 'hapusKeluar']);
-    });
-
-    Route::prefix('industri/surat-keluar')->middleware('permission:teknik industri')->group(function(){
-        Route::get('', [TeknikIndustriController::class, 'keluar'])->name('industri.keluar');
-        Route::delete('delete/{id}', [TeknikIndustriController::class, 'hapusKeluar']);
+        Route::get('surat-keluar', [TeknikIndustriController::class, 'keluar'])->name('industri.keluar');
+        Route::delete('surat-keluar/delete/{id}', [TeknikIndustriController::class, 'hapusKeluar']);
     });
 
 });
