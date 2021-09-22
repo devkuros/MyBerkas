@@ -9,7 +9,7 @@ use App\Http\Controllers\Backend\{DashboardController,
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
 
-use App\Http\Controllers\Backend\Layanan\{TemplateSuratController,
+use App\Http\Controllers\Backend\Layanan\{ArsipController, TemplateSuratController,
     CetakSuratController, PengaturanSuratController};
 
 use App\Http\Controllers\Backend\Permission\{AssignController,
@@ -72,6 +72,8 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
         Route::get('create', [CetakSuratController::class, 'index'])->name('cetak.index');
         Route::get('form/{id}', [CetakSuratController::class, 'form']);
         Route::post('form/exportword/{id}', [CetakSuratController::class, 'exword'])->name('form.word');
+        Route::get('arsip', [ArsipController::class, 'index'])->name('arsip.index');
+        Route::delete('arsip/delete/{id}', [ArsipController::class, 'destroy'])->name('arsip.destroy');
     });
 
     Route::resource('fakultas', FakultasController::class)->middleware('permission:fti');

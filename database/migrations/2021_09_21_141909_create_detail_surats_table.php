@@ -16,9 +16,11 @@ class CreateDetailSuratsTable extends Migration
         Schema::create('detail_surats', function (Blueprint $table) {
             $table->id();
             $table->string('nomer');
-            $table->string('nomor_surat');
+            $table->string('nomor_surat')->unique();
+            $table->string('file_detail');
             $table->string('nama_detail_surat');
             $table->date('tgl_surat');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

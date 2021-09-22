@@ -53,7 +53,6 @@ class CetakSuratController extends Controller
         $ds->nomer = $request->nomor_surat;
         $ds->nomor_surat = 'FTI/Unsurya/'.$request->nomor_surat.'/'.getRomawi(now()->month).'/'.now()->year;
         $ds->tgl_surat = $request->tgl_surat;
-        $ds->save();
 
         $template = TemplateSurat::findOrFail($id);
 
@@ -70,9 +69,10 @@ class CetakSuratController extends Controller
         $templateProcessor->setValue('fakultas', $request->fakultas);
         $templateProcessor->setValue('prodi', $request->prodi);
         $fileName = $request->name;
-        // $filePath = 'storage/suratjadi/'.$fileName.'.docx';
-        $templateProcessor->saveAs($fileName.'.docx');
-
-        return response()->download($fileName.'.docx')->deleteFileAfterSend('true');
+        $filePath = 'storage/suratjadi/'.$fileName.'.docx';
+        $ds->file_detail = $fileName.'.docx';
+        $ds->save();
+        $templateProcessor->saveAs($filePath);
+        return response()->download($filePath);
     }
 }
