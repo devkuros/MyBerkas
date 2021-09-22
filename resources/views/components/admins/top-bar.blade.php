@@ -102,22 +102,40 @@
                     <a href="#" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle autodroprown">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                            <span>Surat Masuk</span>
+                            <span>Arsip Surat</span>
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </a>
                     <ul class="collapse submenu list-unstyled" id="suratmasuk" data-parent="#topAccordion">
-                        @can('fti')
-                            <li class="{{ set_active('fakultas.index') }}">
-                                <a href="{{route('fakultas.index')}}"> Fakultas Teknologi Industri </a>
-                            </li>
-                        @endcan
 
-                        @can('teknik industri')
-                            <li class="{{ set_active('industri.index') }}">
-                                <a href="{{route('industri.index')}}"> Teknik Industri </a>
-                            </li>
-                        @endcan
+                        <li class="sub-sub-submenu-list {{ set_active('fakultas.index') }}{{ set_active('industri.index') }}">
+                            <a href="#starter-kit" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Surat Masuk <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu eq-animated eq-fadeInUp" id="starter-kit" data-parent="#more">
+                                @can('fti')
+                                    <li class="{{ set_active('fakultas.index') }}">
+                                        <a href="{{route('fakultas.index')}}"> Fakultas Teknologi Industri </a>
+                                    </li>
+                                @endcan
+                                @can('teknik industri')
+                                    <li class="{{ set_active('industri.index') }}">
+                                        <a href="{{route('industri.index')}}"> Teknik Industri </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+
+                        <li class="sub-sub-submenu-list {{ set_active('industri.keluar') }}{{ set_active('fakultas.keluar') }}">
+                            <a href="#starter-kit" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Surat Keluar <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
+                            <ul class="collapse list-unstyled sub-submenu eq-animated eq-fadeInUp" id="starter-kit" data-parent="#more">
+                                <li class="{{ set_active('fakultas.keluar') }}">
+                                    <a href="{{route('fakultas.keluar')}}"> Fakultas Teknologi Industri </a>
+                                </li>
+                                <li class="{{ set_active('industri.keluar') }}">
+                                    <a href="{{route('industri.keluar')}}"> Teknik Industri </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </li>
                 @endcan

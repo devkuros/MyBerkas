@@ -226,7 +226,7 @@
 
         $('#btnDelete').click(function () {
                 $.ajax({
-                    url: "industri/" + data,
+                    url: "industri/delete/" + data,
                     type: 'delete',
                     beforeSend: function () {
                         $('#btnDelete').text('Delete');

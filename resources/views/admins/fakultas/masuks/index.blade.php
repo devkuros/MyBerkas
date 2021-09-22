@@ -40,7 +40,7 @@
     <div class="widget-content widget-content-area br-6">
         <div class="row">
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>Arsip Fakultas Teknologi Industri</h4>
+                <h4>Arsip Surat Masuk Fakultas Teknologi Industri</h4>
             </div>
         </div>
         <hr>
@@ -226,7 +226,7 @@
 
         $('#btnDelete').click(function () {
                 $.ajax({
-                    url: "fakultas/" + data,
+                    url: "fakultas/delete/" + data,
                     type: 'delete',
                     beforeSend: function () {
                         $('#btnDelete').text('Delete');
