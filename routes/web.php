@@ -16,7 +16,7 @@ use App\Http\Controllers\Backend\Permission\{AssignController,
     PermissionController,
     RoleController,
     UserAssignController};
-
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -88,6 +88,13 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
         Route::delete('delete/{id}', [TeknikIndustriController::class, 'destroy']);
         Route::get('surat-keluar', [TeknikIndustriController::class, 'keluar'])->name('industri.keluar');
         Route::delete('surat-keluar/delete/{id}', [TeknikIndustriController::class, 'hapusKeluar']);
+    });
+
+    Route::prefix('manage-user')->middleware('role:super admin')->group(function(){
+        Route::get('', [UserController::class, 'index'])->name('manages.user');
+        Route::post('add', [UserController::class, 'store'])->name('manages.store');
+        Route::get('{id}/edit', [UserController::class, 'edit']);
+        Route::delete('delete/{id}', [UserController::class, 'destroy']);
     });
 
 });
