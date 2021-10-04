@@ -6,7 +6,8 @@ use App\Http\Controllers\Backend\{DashboardController,
     SuratKeluarController,
     SuratMasukController};
 
-use App\Http\Controllers\Backend\Config\PejabatController;
+use App\Http\Controllers\Backend\Config\{PejabatController,
+    JabatanController};
 
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
@@ -103,6 +104,11 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
     Route::prefix('configuration')->middleware('role:super admin')->group(function(){
         Route::get('pejabat', [PejabatController::class, 'index'])->name('admin.pejabat');
         Route::delete('delete/{id}', [PejabatController::class, 'destroy']);
+        Route::get('jabatan', [JabatanController::class, 'index'])->name('admin.jabatan');
+        Route::post('jabatan/add', [JabatanController::class, 'store'])->name('jabatan.store');
+        Route::get('jabatan/{id}/edit', [JabatanController::class, 'edit']);
+        Route::put('jabatan/{id}/edit', [JabatanController::class, 'update']);
+        Route::delete('delete/{id}', [JabatanController::class, 'destroy']);
     });
 
 });

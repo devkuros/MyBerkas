@@ -149,7 +149,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </a>
                     <ul class="collapse submenu list-unstyled" id="adminmeny" data-parent="#topAccordion">
-                        <li class="">
+                        <li class="{{ set_active('admin.jabatan') }}">
+                            <a href="{{route('admin.jabatan')}}"> Jabatan </a>
+                        </li>
+                        <li class="{{ set_active('admin.pejabat') }}">
                             <a href="{{route('admin.pejabat')}}"> Pejabat </a>
                         </li>
                     </ul>
