@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\{DashboardController,
     SuratKeluarController,
     SuratMasukController};
 
+use App\Http\Controllers\Backend\Config\AdminConfigController;
+
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
 
@@ -16,6 +18,7 @@ use App\Http\Controllers\Backend\Permission\{AssignController,
     PermissionController,
     RoleController,
     UserAssignController};
+
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -95,6 +98,11 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
         Route::post('add', [UserController::class, 'store'])->name('manages.store');
         Route::get('{id}/edit', [UserController::class, 'edit']);
         Route::delete('delete/{id}', [UserController::class, 'destroy']);
+    });
+
+    Route::prefix('configuration')->middleware('role:super admin')->group(function(){
+        Route::get('pejabat', [AdminConfigController::class, 'pejabat'])->name('admin.pejabat');
+        Route::delete('delete/{id}', [AdminConfigController::class, 'destroy']);
     });
 
 });
