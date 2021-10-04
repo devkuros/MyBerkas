@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\{DashboardController,
     SuratKeluarController,
     SuratMasukController};
 
-use App\Http\Controllers\Backend\Config\AdminConfigController;
+use App\Http\Controllers\Backend\Config\PejabatController;
 
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
     TeknikIndustriController};
@@ -101,8 +101,8 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
     });
 
     Route::prefix('configuration')->middleware('role:super admin')->group(function(){
-        Route::get('pejabat', [AdminConfigController::class, 'pejabat'])->name('admin.pejabat');
-        Route::delete('delete/{id}', [AdminConfigController::class, 'destroy']);
+        Route::get('pejabat', [PejabatController::class, 'index'])->name('admin.pejabat');
+        Route::delete('delete/{id}', [PejabatController::class, 'destroy']);
     });
 
 });
