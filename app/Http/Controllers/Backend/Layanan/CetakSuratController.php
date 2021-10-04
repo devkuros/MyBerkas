@@ -37,9 +37,10 @@ class CetakSuratController extends Controller
                                 ->where('deleted_at', null)->first();
 
         $ceknomor = DB::table('detail_surats')->latest()->first();
+        $ambilpejabat = DB::table('pejabats')->get()->all();
 
         if(View::exists('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'')){
-            return view('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'', compact('forms', 'ceknomor'));
+            return view('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'', compact('forms', 'ceknomor', 'ambilpejabat'));
         } else {
             return abort('404');
         }
@@ -68,6 +69,7 @@ class CetakSuratController extends Controller
         $templateProcessor->setValue('nim_mhs', $request->nim);
         $templateProcessor->setValue('fakultas', $request->fakultas);
         $templateProcessor->setValue('prodi', $request->prodi);
+        $templateProcessor->setValue('atasnama', $request->ttd);
         $fileName = $request->name;
         $filePath = 'storage/suratjadi/'.$fileName.'.docx';
         $ds->file_detail = $fileName.'.docx';

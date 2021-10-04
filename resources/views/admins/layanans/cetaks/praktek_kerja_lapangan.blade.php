@@ -180,8 +180,10 @@
                             <div class="form-group mb-4">
                                 <label class="control-label" for="ttd">Tertanda Atas Nama</label>
                                 <select name="ttd" id="ttd" class="form-control @error('ttd') is-invalid @enderror">
-                                    <option selected>Choose me...</option>
-                                    <option>. . .</option>
+                                    <option selected disabled>Choose me...</option>
+                                    @foreach ($ambilpejabat as $pejabat)
+                                        <option value="{{$pejabat->nama_pejabat}}">{{$pejabat->nama_pejabat}}</option>
+                                    @endforeach
                                     @error('ttd')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

@@ -1,6 +1,6 @@
 @extends('layouts.admins.base')
 
-@section('admin-tittle')Arsip Surat @endsection
+@section('admin-tittle')Arsip Surat Keluar @endsection
 
 @push('css')
     <!--  BEGIN CUSTOM STYLE FILE  -->
@@ -17,7 +17,7 @@
 @section('content')
         <div class="page-header">
             <div class="page-title">
-                <h3>Arsip Surat</h3>
+                <h3>Arsip Surat Keluar</h3>
             </div>
 
             <div class="breadcrumb-four">
@@ -68,7 +68,7 @@
         <div class="widget-content widget-content-area br-6">
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <h4>Arsip Surat</h4>
+                    <h4>Fakultas Teknologi Industri</h4>
                 </div>
             </div>
             <hr>
