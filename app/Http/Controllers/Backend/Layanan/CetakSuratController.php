@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Backend\Layanan;
 
 use Carbon\Carbon;
-use App\Models\{TemplateSurat, DetailSurat};
+use App\Models\Pejabat;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{View, URL, DB};
 use App\Http\Controllers\Controller;
 use PhpOffice\PhpWord\TemplateProcessor;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\{TemplateSurat, DetailSurat};
+use Illuminate\Support\Facades\{View, URL, DB};
 
 class CetakSuratController extends Controller
 {
@@ -37,7 +38,9 @@ class CetakSuratController extends Controller
                                 ->where('deleted_at', null)->first();
 
         $ceknomor = DB::table('detail_surats')->latest()->first();
-        $ambilpejabat = DB::table('pejabats')->get()->all();
+        $ambilpejabat = Pejabat::join('jabatans', 'pejabats.jabatan_id', '=', 'jabatans.id')
+        ->select(['pejabats.id', 'pejabats.nama_pejabat', 'pejabats.foto_pejabat', 'jabatans.nama_jabatan'])->get();
+
 
         if(View::exists('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'')){
             return view('admins.layanans.cetaks.'.$forms->formatSurat->url_format.'', compact('forms', 'ceknomor', 'ambilpejabat'));

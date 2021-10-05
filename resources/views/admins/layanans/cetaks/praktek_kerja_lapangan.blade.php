@@ -182,17 +182,17 @@
                                 <select name="ttd" id="ttd" class="form-control @error('ttd') is-invalid @enderror">
                                     <option selected disabled>Choose me...</option>
                                     @foreach ($ambilpejabat as $pejabat)
-                                        <option value="{{$pejabat->nama_pejabat}}">{{$pejabat->nama_pejabat}}</option>
+                                        <option value="{{$pejabat->nama_pejabat}}">{{$pejabat->nama_jabatan}} - {{$pejabat->nama_pejabat}}</option>
                                     @endforeach
-                                    @error('ttd')
+                                </select>
+                                @error('ttd')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
-                                    @enderror
-                                </select>
+                                @enderror
                             </div>
 
-                            <div class="form-group mb-4">
+                            {{-- <div class="form-group mb-4">
                                 <label class="control-label" for="jabatan">Menjabat sebagai</label>
                                 <select name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror">
                                     <option selected>Choose me...</option>
@@ -203,7 +203,7 @@
                                         </span>
                                     @enderror
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <button class="btn btn-primary mb-2 mr-2" type="submit">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -222,16 +222,16 @@
 
 @push('js-in')
 
-<script>
-    var f2 = flatpickr(document.getElementById('when'), {
-    enableTime: false,
-    altInput: true,
-    altFormat: "d F Y",
-    dateFormat: "Y-m-d",
-});
-</script>
+    <script>
+        var f2 = flatpickr(document.getElementById('when'), {
+        enableTime: false,
+        altInput: true,
+        altFormat: "d F Y",
+        dateFormat: "Y-m-d",
+    });
+    </script>
 
-<script>
+    <script>
     input.oninput = function() {
         result.innerHTML = input.value;
     };
