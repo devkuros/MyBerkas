@@ -19,8 +19,7 @@ use App\Http\Controllers\Backend\Permission\{AssignController,
     PermissionController,
     RoleController,
     UserAssignController};
-
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\{UserController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +33,12 @@ Route::middleware('guest', 'prevent.history')->prefix('sys-admin')->group(functi
 
 Route::middleware('auth', 'prevent.history')->group(function(){
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::middleware('auth')->prefix('profile')->group(function(){
+    Route::get('view', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('update/{id}', [ProfileController::class, 'update'])->name('users.update');
+    Route::patch('changepassword', [ProfileController::class, 'updatepassword'])->name('users.updatepassword');
 });
 
 Route::middleware('have.role')->prefix('admin')->group(function(){
@@ -112,7 +117,3 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
     });
 
 });
-
-
-
-
