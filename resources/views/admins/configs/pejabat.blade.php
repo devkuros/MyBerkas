@@ -13,8 +13,17 @@
 
 @section('content')
 
-    <div class="page-header">
+<div class="page-header">
+    <div class="page-title">
+        <h3>Pejabat</h3>
     </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+         <a class="btn btn-primary float-right my-3" href="{{route('tambah.pejabat')}}" id="createNew"> Tambah Pejabat</a>
+        </div>
+     </div>
+</div>
+
 
     {{-- Delete Modal --}}
     <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" data-backdrop="false">
@@ -38,12 +47,6 @@
     </div>
 
     <div class="widget-content widget-content-area br-6">
-        <div class="row">
-            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>Pejabat</h4>
-            </div>
-        </div>
-        <hr>
         <table id="dtable" class="table dt-table-hover" style="width:100%">
             <thead>
                 <tr>

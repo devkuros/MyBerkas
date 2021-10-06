@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Config;
 
-use App\Models\Pejabat;
+use App\Models\{Jabatan, Pejabat};
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PejabatRequest;
 use Illuminate\Support\Facades\Crypt;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class PejabatController extends Controller
@@ -33,6 +35,20 @@ class PejabatController extends Controller
         }
 
         return view('admins.configs.pejabat', compact('pejabats'));
+    }
+
+    public function tambahPejabat(){
+        $jabatans = Jabatan::all();
+        return view('admins.configs.tambahpejabat', compact('jabatans'));
+    }
+
+    public function store(PejabatRequest $request, Pejabat $pejabat){
+        $pejabat->jabatan_id = $request->jabatan;
+        $pejabat->nama_pejabat = $request->pejabat;
+        $pejabat->save();
+
+        Alert::toast('Input Pejabat Success', 'success')->position('top');
+        return back();
     }
 
     public function destroy($id){
