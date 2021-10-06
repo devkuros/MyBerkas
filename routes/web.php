@@ -108,7 +108,7 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
 
     Route::prefix('configuration')->middleware('role:super admin')->group(function(){
         Route::get('pejabat', [PejabatController::class, 'index'])->name('admin.pejabat');
-        Route::delete('delete/{id}', [PejabatController::class, 'destroy']);
+        Route::delete('pejabat/delete/{id}', [PejabatController::class, 'destroy']);
         Route::get('jabatan', [JabatanController::class, 'index'])->name('admin.jabatan');
         Route::post('jabatan/add', [JabatanController::class, 'store'])->name('jabatan.store');
         Route::get('jabatan/{id}/edit', [JabatanController::class, 'edit']);

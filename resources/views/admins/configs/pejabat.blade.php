@@ -141,7 +141,7 @@
 
         $('body').on('click', '.editData', function () {
                 var id = $(this).data('id');
-                $.get(' fakultas/' + id + '/edit', function (data) {
+                $.get(' pejabat/' + id + '/edit', function (data) {
                     $('#titleModal').html("Edit " + data.nama_pejabat);
                     $('#saveBtn').val("editDataa");
                     $('#ajaxModal').modal('show');
@@ -208,7 +208,7 @@
 
         $('#btnDelete').click(function () {
                 $.ajax({
-                    url: "delete/" + data,
+                    url: "pejabat/delete/" + data,
                     type: 'delete',
                     beforeSend: function () {
                         $('#btnDelete').text('Delete');
