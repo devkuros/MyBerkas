@@ -42,10 +42,12 @@ class PejabatController extends Controller
         return view('admins.configs.tambahpejabat', compact('jabatans'));
     }
 
-    public function store(PejabatRequest $request, Pejabat $pejabat){
-        $pejabat->jabatan_id = $request->jabatan;
-        $pejabat->nama_pejabat = $request->pejabat;
-        $pejabat->save();
+    public function store(PejabatRequest $request){
+        Pejabat::updateOrCreate(
+            ['jabatan_id' => $request->jabatan],
+            [
+                'nama_pejabat' => $request->pejabat
+            ]);
 
         Alert::toast('Input Pejabat Success', 'success')->position('top');
         return back();
