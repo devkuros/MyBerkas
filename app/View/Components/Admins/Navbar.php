@@ -2,8 +2,9 @@
 
 namespace App\View\Components\Admins;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class Navbar extends Component
 {
@@ -25,6 +26,7 @@ class Navbar extends Component
     public function render()
     {
         $users = Auth::user();
-        return view('components.admins.navbar', compact('users'));
+        $roles = Role::get();
+        return view('components.admins.navbar', compact('users', 'roles'));
     }
 }
