@@ -129,12 +129,17 @@
                         <li class="sub-sub-submenu-list {{ set_active('industri.keluar') }}{{ set_active('fakultas.keluar') }}">
                             <a href="#starter-kit" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Surat Keluar <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
                             <ul class="collapse list-unstyled sub-submenu eq-animated eq-fadeInUp" id="starter-kit" data-parent="#more">
-                                <li class="{{ set_active('fakultas.keluar') }}">
-                                    <a href="{{route('fakultas.keluar')}}"> Fakultas Teknologi Industri </a>
-                                </li>
-                                <li class="{{ set_active('industri.keluar') }}">
-                                    <a href="{{route('industri.keluar')}}"> Teknik Industri </a>
-                                </li>
+                                @can('fti')
+                                    <li class="{{ set_active('fakultas.keluar') }}">
+                                        <a href="{{route('fakultas.keluar')}}"> Fakultas Teknologi Industri </a>
+                                    </li>
+                                @endcan
+                                @can('teknik industri')
+                                    <li class="{{ set_active('industri.keluar') }}">
+                                        <a href="{{route('industri.keluar')}}"> Teknik Industri </a>
+                                    </li>
+                                @endcan
+
                             </ul>
                         </li>
 
