@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\{ChangePasswordRequest, ProfileRequest};
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\{Auth, Hash};
+use App\Http\Requests\{ChangePasswordRequest, ProfileRequest};
 
 class ProfileController extends Controller
 {
@@ -19,7 +19,7 @@ class ProfileController extends Controller
         $user = Auth::user($id);
 
         if($request->hasFile('avatar')){
-
+            unlink(public_path('/storage/avatar/'.$user->avatar));
             $image = $request->file('avatar');
             $user['avatar'] = time().'-'. $image->getClientOriginalName();
 
