@@ -19,12 +19,16 @@ class ProfileController extends Controller
         $user = Auth::user($id);
 
         if($request->hasFile('avatar')){
-            unlink(public_path('/storage/avatar/'.$user->avatar));
-            $image = $request->file('avatar');
-            $user['avatar'] = time().'-'. $image->getClientOriginalName();
 
-            $filepath = public_path('/storage/avatar');
-            $image->move($filepath, $user['avatar']);
+            if(file_exists(public_path('/storage/avatar/'.$user->avatar))){
+                unlink(public_path('/storage/avatar/'.$user->avatar));
+            }
+                $image = $request->file('avatar');
+                $user['avatar'] = time().'-'. $image->getClientOriginalName();
+
+                $filepath = public_path('/storage/avatar');
+                $image->move($filepath, $user['avatar']);
+
         } else {
             $image = $user->avatar;
         }
