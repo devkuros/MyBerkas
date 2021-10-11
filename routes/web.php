@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\{DashboardController,
     SuratKeluarController,
     SuratMasukController};
 
-use App\Http\Controllers\Backend\Config\{PejabatController,
+use App\Http\Controllers\Backend\Config\{AdminConfigController, PejabatController,
     JabatanController};
 
 use App\Http\Controllers\Backend\Fakultas\{FakultasController,
@@ -116,6 +116,13 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
         Route::get('jabatan/{id}/edit', [JabatanController::class, 'edit']);
         Route::put('jabatan/{id}/edit', [JabatanController::class, 'update']);
         Route::delete('delete/{id}', [JabatanController::class, 'destroy']);
+
+        Route::prefix('format')->group(function(){
+            Route::get('index', [AdminConfigController::class, 'index'])->name('format.index');
+            Route::post('surat/add', [AdminConfigController::class, 'store'])->name('format.store');
+            Route::get('formatsurat/{id}/edit', [AdminConfigController::class, 'edit']);
+            Route::delete('destroy/{id}', [AdminConfigController::class, 'destroy']);
+        });
     });
 
 });

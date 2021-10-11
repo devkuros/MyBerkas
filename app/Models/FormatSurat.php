@@ -10,7 +10,14 @@ class FormatSurat extends Model
 {
     use HasFactory, HasRoles, SoftDeletes;
 
-    protected $guarded = [];
+    protected $table = "format_surats";
+
+    protected $fillable = [
+        'kode_format',
+        'nama_format',
+        'file_format',
+        'url_format'
+    ];
 
     public function templateSurat(){
         return $this->hasMany(TemplateSurat::class, 'format_surat_id');
