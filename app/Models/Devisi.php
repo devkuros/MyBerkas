@@ -13,6 +13,6 @@ class Devisi extends Model
     protected $table = 'devisis';
 
     protected $fillable = [
-        'name_devisi'
+        'nama_devisi'
     ];
 }

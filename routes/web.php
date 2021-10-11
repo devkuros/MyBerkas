@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\{DashboardController,
+    DevisiController,
     KategoriController,
     LoginController,
     SuratKeluarController,
@@ -45,6 +46,7 @@ Route::middleware('have.role')->prefix('admin')->group(function(){
     Route::get('home', [DashboardController::class, 'index'])->name('dashboard')->middleware('prevent.history');
 
     Route::resource('category', KategoriController::class);
+    Route::resource('devisi', DevisiController::class);
 
     Route::prefix('surat-masuk')->middleware('permission:create surat')->group(function(){
         Route::get('', [SuratMasukController::class, 'index'])->name('masuks.index');

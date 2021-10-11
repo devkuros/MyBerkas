@@ -77,7 +77,7 @@
                 @endcan
 
                 @can('assign surat')
-                <li class="menu single-menu {{ set_active('category.index') }}{{ set_active('masuks.index') }}{{ set_active('keluars.index') }}">
+                <li class="menu single-menu {{ set_active('devisi.index') }}{{ set_active('category.index') }}{{ set_active('masuks.index') }}{{ set_active('keluars.index') }}">
                     <a href="#" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle autodroprown">
                         <div class="">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-archive"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
@@ -89,6 +89,11 @@
                         @can('assign category')
                             <li class="{{ set_active('category.index') }}">
                                 <a href="{{route('category.index')}}"> Kategori Surat </a>
+                            </li>
+                        @endcan
+                        @can('assign devisi')
+                            <li class="{{ set_active('devisi.index') }}">
+                                <a href="{{route('devisi.index')}}"> Devisi </a>
                             </li>
                         @endcan
                         <li class="{{ set_active('masuks.index') }}">

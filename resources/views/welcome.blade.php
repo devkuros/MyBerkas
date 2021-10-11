@@ -54,7 +54,7 @@
                     <div class="hero-inner">
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0 is-revealing">Welcome to MyBerkas!!</h1>
-	                        <p class="hero-paragraph is-revealing">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
+	                        <p class="hero-paragraph is-revealing">Welcome to MyBerkas!!.</p>
 							<div class="hero-form field field-grouped is-revealing">
 	                            {{-- <div class="control control-expanded">
 	                                <input class="input" type="email" name="email" placeholder="Your best email&hellip;">
